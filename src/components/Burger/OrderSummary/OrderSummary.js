@@ -1,35 +1,40 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
 
 import Button from '../../UI/Button/Button';
 
-const orderSummary = (props) => {
+class OrderSummary extends Component {
+//this could be a functional component. 
+//It became a class to call componentwillUpdate and check when it re-renders
+    UNSAFE_componentWillUpdate () {
+        console.log('[OrderSumary] WillUpdate');
+    }
 
-    const ingredientSummary = Object.keys(props.ingredients)
-    .map(igKey => {
-        return (
-            <li key={igKey}>
-                <span style={{textTransform: 'capitalize'}}>{igKey}</span>: {props.ingredients[igKey]}
-            </li>
-        );
-    });
+    render(){
 
+        const ingredientSummary = Object.keys(this.props.ingredients)
+        .map(igKey => {
+            return (
+                <li key={igKey}>
+                    <span style={{textTransform: 'capitalize'}}>{igKey}</span>: {this.props.ingredients[igKey]}
+                </li>
+            );
+        });
 
-
-    return (
-        <Fragment>
+        return(
+            <Fragment>
             <h3>Your Order</h3>
             <p>A delicious burger with the following ingredients:</p>
             <ul>      
                 {ingredientSummary}          
             </ul>
-            <p><strong>Total Price: {props.price.toFixed(2)}</strong></p>
+            <p><strong>Total Price: {this.props.price.toFixed(2)}</strong></p>
             <p>Continue to Checkout?</p>
 
-            <Button clicked={props.purchaseCancelled} buttonType="Danger">CANCEL</Button>
-            <Button clicked={props.purchaseContinued} buttonType="Success">CONTINUE</Button>
+            <Button clicked={this.props.purchaseCancelled} buttonType="Danger">CANCEL</Button>
+            <Button clicked={this.props.purchaseContinued} buttonType="Success">CONTINUE</Button>
         </Fragment>
-    );
-
+        );
+    }
 };
 
-export default orderSummary;
+export default OrderSummary;
