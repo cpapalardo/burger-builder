@@ -1,4 +1,6 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+
 import classes from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
@@ -22,8 +24,6 @@ const burger = (props) => {
         trasformedIngredients = <p>Please, start adding ingredients</p>;
     }
 
-    console.log(trasformedIngredients);
-
     return (
         <div className={classes.Burger}>
             <BurgerIngredient type="bread-top"/>
@@ -33,4 +33,4 @@ const burger = (props) => {
     );
 }
 
-export default burger;
+export default withRouter(burger);

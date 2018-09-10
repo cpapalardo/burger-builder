@@ -5,9 +5,6 @@ import Button from '../../UI/Button/Button';
 class OrderSummary extends Component {
 //this could be a functional component. 
 //It became a class to call componentwillUpdate and check when it re-renders
-    UNSAFE_componentWillUpdate () {
-        console.log('[OrderSumary] WillUpdate');
-    }
 
     render(){
 
